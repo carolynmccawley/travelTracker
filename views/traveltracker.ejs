@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Travel Tracker</title>
+        
+        <style>
+
+            .container {
+                width:100%;
+            }
+            
+            .leftColumn {
+                width:50%;
+                float:left;
+/*                border: 2px solid black;*/
+            }
+            .rightColumn {
+                width:50%;
+                float:left;
+/*                border:2px solid black;*/
+            }
+            .newTrip {
+                margin-right:10px;
+                margin-left:10px;
+                margin-top:10px;
+                border:4px solid #CB543F;
+                margin-bottom:3px;
+                border-radius:3px;
+            }
+            h3#locationTitle {
+                margin-left:3%;
+                text-decoration:underline wavy #CB543F;
+            }
+            h4 {
+                margin-left:10%;
+            }
+            /*  nav bar styling*/
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #CB543F;
+            }
+            li {
+                float: left;
+            }
+            li input.ghost-button {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                background:#CB543F;
+                border:none;
+                font-size:18px;
+                transition:0.3s;
+            }
+            li input.ghost-button:hover {
+                color: #CB543F;
+                background:white;
+            }
+            
+            div.pastTrips, div.plannedTrips {
+                height:1000px;
+                overflow:scroll;
+            }
+            h1 {
+                text-align:center;
+                text-decoration: underline dotted #CB543F;
+            }
+            h2,div.addTripButton {
+                display:inline-block;
+                margin-left:3%;
+/*                position:relative;*/
+/*                bottom:10%;*/
+            }
+            div.addTripButton {
+                margin-left:72%;
+            }
+            input#addTrip.ghost-button {
+                border:none;
+                font-size:18px;
+                background:#CB543F;
+                color:white;
+                border:3px solid #CB543F;
+                border-radius:3px;
+                transition:0.3s;
+            }
+            input#addTrip.ghost-button:hover {
+                font-size:20px;
+                border:4px solid #CB543F;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+              <li><form action="/tthomepage">
+                  <input type="submit" class="ghost-button" value="Home">
+                  </form></li>
+              <li>
+                  <form action="/toRestaurantPage" method="post">
+                <input type="submit" class="ghost-button" value="Search Restaurants">
+                </form>
+              </li>
+              <li>
+                <form action="/searchEvents" method="post">
+                    <input type="submit" class="ghost-button" value="Search Places">    
+                </form>
+               </li>
+                <li style="float:right">
+                    <form action="/logOut">
+                        <input type="submit" class="ghost-button" value="Logout">
+                    </form>
+                </li>
+        </ul>
+        
+        <h1>Welcome <%=name%>!</h1>
+        
+     
+        
+            
+        <div class="container"> 
+        
+            
+            
+            <div class="leftColumn">  
+                <h2>Past Trips!</h2>
+                    <div class="addTripButton">
+                        <form action="/goToaddTrip">
+                        <input id="addTrip" type="submit" class="ghost-button" value="+">   
+                        </form>
+                    </div>
+            <div class="pastTrips" method="post">
+                <% if (tripData == null){ %>
+                <p>Start adding Trips!</p>
+                <% } else { %>
+                    <%var keys = Object.keys(tripData)%>
+                    <% for (var i=0; i<keys.length; i++){%>
+                        <div class="newTrip">
+                        <%var keyData = tripData[keys[i]]%>
+                        <h3 id="locationTitle"> <%=keyData.location %> </h3>
+                        <h4> <%=keyData.notes %> </h4>
+                        </div>
+                    <% } %>
+                    
+                <% } %>
+            </div>
+                
+            </div>
+            
+            
+            <div class="rightColumn">
+                <h2>Saved Places</h2>
+            <div class="plannedTrips">
+                <% if (starTrips == null){ %>
+                <p>Start adding Trips!</p>
+                <% } else { %>
+                    <%var keys = Object.keys(starTrips)%>
+                    <% for (var i=0; i<keys.length; i++){%>
+                        <div class="newTrip">
+                        <%var keyData = starTrips[keys[i]]%>
+                        <h3 id="locationTitle"> <%=keyData.name %> </h3>
+                        <h4><%=keyData.address %></h4>
+                        </div>
+                    <% } %>
+                    
+                <% } %>
+                        
+            </div>
+            </div>
+            
+            
+            
+            
+        </div>
+    
+    
+    
+    
+    </body>
+</html>

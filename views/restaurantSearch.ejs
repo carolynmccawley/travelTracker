@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Restaurant Search</title>
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #CB543F;
+            }
+            li {
+                float: left;
+            }
+            li input.ghost-button {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                background:#CB543F;
+                border:none;
+                font-size:18px;
+                transition:0.3s;
+            }
+            li input.ghost-button:hover {
+                color: #CB543F;
+                background:white;
+            }
+            h1, form {
+                text-align:center;
+            }
+            input#fSearch.ghost-button {
+                border:none;
+                font-size:16px;
+                background:#CB543F;
+                border: 3px solid #CB543F; 
+                color:white;
+                margin-top:1%;
+                border-radius:3px;
+            }
+            input#fSearch.ghost-button:hover {
+                font-size:17px;
+                border: 4px solid #CB543F;
+            }
+            div.restDiv {
+                position:relative;
+                left:30%;
+                text-align:center;
+                width:500px;
+                margin-top:2%;
+                border-top: 3px dotted #CB543F;
+            }
+            input#moreBtn.ghost-button {
+                border:none;
+                font-size:14px;
+                background:#CB543F;
+                border:2px solid #CB543F;
+                color: white;
+                border-radius:2px;
+            }
+            input#moreBtn.ghost-button:hover {
+                font-size:15px;
+                border: 2px solid #CB543F;
+            }
+            body {
+                margin-bottom:2%;
+            }
+
+
+        </style>
+    </head>
+    
+    <body>
+                <ul>
+              <li><form action="/tthomepage">
+                  <input type="submit" class="ghost-button" value="Home">
+                  </form></li>
+              <li>
+                  <form action="/toRestaurantPage" method="post">
+                <input type="submit" class="ghost-button" value="Search Restaurants">
+                </form>
+              </li>
+              <li>
+                <form action="/searchEvents" method="post">
+                    <input type="submit" class="ghost-button" value="Search Places">    
+                </form>
+               </li>
+                <li style="float:right">
+                    <form action="/logOut">
+                        <input type="submit" class="ghost-button" value="Logout">
+                    </form>
+                </li>
+        </ul>
+        
+        <h1>Enter an address and Start finding your next Restaurant!</h1>
+        
+        <div class="container">
+        <form action="/findRestaurant" method="post">
+            <input name="searchLoc" type="text" class="ghost-input" placeholder="Search" required>
+            <br>
+            <input id="fSearch" type="submit" name="rButton" class="ghost-button" value="Search">
+        </form>
+            
+            <div class="dataResults">
+            <% if (data){%>
+                <%for (var i = 0; i < data.length; i++){ %>
+                    <form action="toLikeButton" method="post">
+                    <div class="restDiv">
+                    <h3><%=data[i].name%></h3>
+                    <h4>rating: <%=data[i].rating%></h4>
+                    <h4>price range: <%=data[i].price%></h4>
+                    <h4>address: <%=data[i].location.display_address%></h4>
+                    <input type="hidden" name="locID" value="<%=data[i].id%>">
+                    <input type="hidden" name="locPhone" value="<%=data[i].phone%>">          
+                    <input id="moreBtn" type="submit" class="ghost-button" value="View More Details"> 
+                    <br>
+                    </div>  
+                    </form>
+                <%}%>
+            <%}%>
+            </div>
+        </div>
+    
+    </body>
+
+</html>

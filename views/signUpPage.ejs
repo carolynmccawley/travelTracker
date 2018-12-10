@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <style>
+        div#container {
+            text-align:center;
+        }
+        h1 {
+            text-align:center;
+            color: #CB543F;
+        }
+        input.ghost-button {
+            margin-bottom:10px;
+            border:none;
+            border:6px solid #CB543F;
+            border-radius:3px;
+            color:white;
+            background:#CB543F;
+            font-size:16px;
+        }
+        input.ghost-button:hover {
+            border:8px solid #CB543F;
+            font-size:18px;
+        }
+    </style>
+    
+  </head>
+  <body>
+      <form action="/">
+        <input type="submit" value="Go Back" class="ghost-button">
+      </form>
+      
+      <h1>Sign Up Below!</h1>
+      <div class="container">
+        <form action="/signUpPage" method="post">
+            <center>
+                <input name="firstName" type="text" class="ghost-input" placeholder="First Name" required>
+                <input name="lastName" type="text" class="ghost-input" placeholder="Last Name" required>
+            </center>
+            <br>
+            <center><input name="userName" type="text" class="ghost-input" placeholder="username" required></center>
+            <br>
+            <center><input name="password" type="text" class="ghost-input" placeholder="Password" required></center>
+            <br>
+            <center><input type="submit" class="ghost-button" value="Submit & Sign Up"></center>
+        </form>
+          
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Activity Page</title>
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #CB543F;
+            }
+            li {
+                float: left;
+            }
+            li input.ghost-button {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                background:#CB543F;
+                border:none;
+                font-size:18px;
+                transition:0.3s;
+            }
+            li input.ghost-button:hover {
+                color: #CB543F;
+                background:white;
+            }
+            h1,
+            form {
+                text-align:center;
+            }
+            input#fSearch.ghost-button {
+                border:none;
+                font-size:16px;
+                background:#CB543F;
+                border: 3px solid #CB543F; 
+                color:white;
+                margin-top:1%;
+                border-radius:3px;
+            }
+            input#fSearch.ghost-button:hover {
+                font-size:17px;
+                border: 4px solid #CB543F;
+            }
+            form#results {
+                position:relative;
+                left:30%;
+                text-align:center;
+                width:500px;
+                margin-top:2%;
+                border-top: 3px dotted #CB543F;
+            }
+            input#likeBtn.ghost-button{
+                border:none;
+                font-size:14px;
+                background:#CB543F;
+                border:2px solid #CB543F;
+                color: white;
+                border-radius:2px;
+            }
+            input#likeBtn.ghost-button:hover {
+                font-size:15px;
+                border: 2px solid #CB543F;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <ul>
+              <li><form action="/tthomepage">
+                  <input type="submit" class="ghost-button" value="Home">
+                  </form></li>
+              <li>
+                  <form action="/toRestaurantPage" method="post">
+                <input type="submit" class="ghost-button" value="Search Restaurants">
+                </form>
+              </li>
+              <li>
+                <form action="/searchEvents" method="post">
+                    <input type="submit" class="ghost-button" value="Search Places">    
+                </form>
+               </li>
+                <li style="float:right">
+                    <form action="/logOut">
+                        <input type="submit" class="ghost-button" value="Logout">
+                    </form>
+                </li>
+        </ul>
+        <h1>Search to find the best tourist acttractions to add them to your itinerary!</h1>
+        
+        <form action="/googlePlaces" method="post">
+            <input type="text" name="queryLoc" class="ghost-input" placeholder="Enter a location">
+            
+            <h3>What are you interested in finding?</h3>
+            <input type="radio" name="locType" value="amusement_park">Amusement Park
+            <input type="radio" name="locType" value="aquarium"> Aquarium
+            <input type="radio" name="locType" value="art_gallery"> Art Galleries
+            <input type="radio" name="locType" value="book_store"> Book Store
+            <input type="radio" name="locType" value="clothing_store"> Clothing Stores
+            <input type="radio" name="locType" value="night_club"> Clubs
+            <input type="radio" name="locType" value="library"> Libraries
+            <input type="radio" name="locType" value="museum"> Museums
+            <br>
+            <input id="fSearch" type="submit" class="ghost-button" value="Search">
+        </form>
+        
+        
+        <%if (data){%>
+            <% for (var i =0; i < data.length; i++){ %>
+                <form id="results" action="eventLike" method="post">
+                <h3><%=data[i].name%></h3>
+                <h3>rating: <%=data[i].rating%></h3>
+                <h3>address: <%=data[i].formatted_address%></h3>
+                    
+                <input type="hidden" name="locName" value="<%=data[i].name%>">
+                <input type="hidden" name="locAddress" value="<%=data[i].formatted_address%>">
+                    
+                <input id="likeBtn" type="submit" class="ghost-button" value="Like">
+                </form>
+            <%}%>
+        <%}%>
+        
+        <%if(error){ %>
+        <p><%=error%></p>
+        <%}%>
+        
+    
+    </body>
+</html>

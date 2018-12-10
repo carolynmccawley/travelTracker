@@ -1,0 +1,109 @@
+<!DOCTYPE hmtl>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Restaurant Search Details</title>
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #CB543F;
+            }
+            li {
+                float: left;
+            }
+            li input.ghost-button {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                background:#CB543F;
+                border:none;
+                font-size:18px;
+                transition:0.3s;
+            }
+            li input.ghost-button:hover {
+                color: #CB543F;
+                background:white;
+            }
+            div#restDetails {
+                text-align:center;
+                
+            }
+            a {
+                text-decoration:none;
+                color:black;
+            }
+            a:hover {
+                color: #CB543F;
+                font-size:18px;
+            }
+            form#likeButton {
+                margin-top:2%;
+            }
+            input#likeBtn.ghost-button {
+                border:none;
+                font-size:18px;
+                background:#CB543F;
+                border: 5px solid #CB543F; 
+                color:white;
+                margin-top:1%;
+                border-radius:3px;
+            }
+            input#likeBtn.ghost-button:hover {
+                font-size:20px;
+                border: 7px solid #CB543F;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <ul>
+              <li><form action="/tthomepage">
+                  <input type="submit" class="ghost-button" value="Home">
+                  </form></li>
+              <li>
+                  <form action="/toRestaurantPage" method="post">
+                <input type="submit" class="ghost-button" value="Search Restaurants">
+                </form>
+              </li>
+              <li>
+                <form action="/searchEvents" method="post">
+                    <input type="submit" class="ghost-button" value="Search Places">    
+                </form>
+               </li>
+                <li style="float:right">
+                    <form action="/logOut">
+                        <input type="submit" class="ghost-button" value="Logout">
+                    </form>
+                </li>
+        </ul>
+        
+        <div class="container">
+            <%if (data != null){ %>
+            <div id="restDetails">
+                <h1><%=data.name%></h1>
+                <h3>price: <%=data.price%></h3>
+                <h3>ratings: <%=data.rating%></h3>
+                <h3>Phone Number: <%=data.display_phone%></h3>
+                <h3>Address: <%=data.location.display_address%></h3>
+                <a href="<%=data.url%>">Visit their website!</a>
+
+
+                <form id="likeButton" action="/likeButton" method="post">
+                    <input type="hidden" name="locName" value="<%=data.name%>">
+                    <input type="hidden" name="locAddress" value="<%=data.location.display_address%>">
+                    <input id='likeBtn' type="submit" class="ghost-button" value="Like">
+                </form>
+                 <%}%>
+            </div>
+
+            <%if (message){ %>
+            <p><%=message%></p>
+            <%}%>
+        </div>
+    </body>
+</html>

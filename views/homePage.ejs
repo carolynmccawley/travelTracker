@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <style>
+        h1 {
+            text-align:center;
+            color:#CB543F;
+            margin-bottom:5%;
+        }  
+        div#container{
+            width:100%;
+        }
+        
+        div#signIn_div {
+            text-align:center;
+            width:45%;
+            margin:1%;
+            float:left;
+            border:10px solid #CB543F;
+            border-radius:3px;
+        }
+        div#signUp_div {
+            text-align:center;
+            width:45%;
+            margin:1%;
+            float:left;
+            border:10px solid #CB543F;
+            border-radius:3px;
+            
+        }
+        input.ghost-button {
+            margin-bottom:10px;
+            border:none;
+            border:4px solid #CB543F;
+            border-radius:3px;
+            color:white;
+            background:#CB543F;
+        }
+        input.ghost-button:hover {
+            border:6px solid #CB543F;
+            font-size:16px;
+        }
+    </style>
+    
+  </head>
+  <body>
+      
+      <h1>Welcome to Travel Tracker!</h1>
+      <div id="container">
+    <div id="signIn_div">
+        <form id="loginForm" action="/" method="post">
+                <h3>Already have an account?</h3>
+                <center><input type="submit" class="ghost-button" value="Login" formaction="toLogIn" ></center>
+                <br>
+        </form>
+    </div>
+      
+      <div id="signUp_div">
+            <form id="signUpForm" action="/" method="post">
+            <h3>New to our site?</h3>
+            <center><input type="submit" class="ghost-button" value="SignUp" formaction="toSignUp"></center>
+            <br>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

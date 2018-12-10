@@ -1,0 +1,109 @@
+<!DOCTYPE hmtl>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Add Trip Details!</title>
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #CB543F;
+            }
+            li {
+                float: left;
+            }
+            li input.ghost-button {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                background:#CB543F;
+                border:none;
+                font-size:18px;
+                transition:0.3s;
+            }
+            li input.ghost-button:hover {
+                color: #CB543F;
+                background:white;
+            }
+            input.notes {
+                text-align: left;
+                padding:  0.6em;
+                padding-bottom:190px;
+                width: 400px;
+                height: 10px;
+                border:1px solid #CB543F;
+                word-wrap: break-word;
+            }
+
+
+            div.container{
+                text-align:center;
+            }
+            input{
+                margin-bottom:1%;
+            }
+            input.ghost-input {
+                border:1px solid #CB543F; 
+            }
+            input#saveBtn.ghost-button {
+                border:none;
+                font-size:18px;
+                background:#CB543F;
+                border: 5px solid #CB543F; 
+                color:white;
+                margin-top:1%;
+                border-radius:3px;
+            }
+            input#saveBtn.ghost-button:hover {
+                font-size:20px;
+                border: 7px solid #CB543F;
+            }
+
+        </style>
+    </head>
+    <body>
+            <ul>
+              <li><form action="/tthomepage">
+                  <input type="submit" class="ghost-button" value="Home">
+                  </form></li>
+              <li>
+                  <form action="/toRestaurantPage" method="post">
+                <input type="submit" class="ghost-button" value="Search Restaurants">
+                </form>
+              </li>
+              <li>
+                <form action="/searchEvents" method="post">
+                    <input type="submit" class="ghost-button" value="Search Places">    
+                </form>
+               </li>
+                <li style="float:right">
+                    <form action="/logOut">
+                        <input type="submit" class="ghost-button" value="Logout">
+                    </form>
+                </li>
+        </ul>
+    <div class="container">
+    <h1>Never Forget a Trip!</h1>
+    <h3>Add details about a trip to another country, state, city or even just a restaurant you want to remember!</32>
+    
+    <form action="/newUserTrip" method="post">
+        <input name="name" type="text" class="ghost-input" placeholder="Trip Name">
+        <br>
+        <input name="location" type="text" class="ghost-input" placeholder="Trip Location">
+        <br>
+        <input class="notes" name="notes" type="text" class="ghost-input" placeholder="Add any and all notes about your trip">
+        <br>
+        <input id="saveBtn" type="submit" class="ghost-button" value="Save">
+        
+        <% if (message !== null){ %>
+            <p><%=message%></p>
+        <% } %>
+    </form>
+            
+    </div>
+    
+    </body>
+</html>

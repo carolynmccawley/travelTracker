@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <style>
+        div#container {
+            text-align:center;
+        }
+        h1 {
+            text-align:center;
+            margin-top:1%;
+            color:#CB543F;
+        }
+        input.ghost-button {
+            margin-bottom:10px;
+            border:none;
+            border:6px solid #CB543F;
+            border-radius:3px;
+            color:white;
+            background:#CB543F;
+            font-size:16px;
+        }
+        input.ghost-button:hover {
+            border:8px solid #CB543F;
+            font-size:18px;
+        }
+    </style>
+    
+  </head>
+  <body>
+      <form action="/">
+        <input type="submit" value="Go Back" class="ghost-button">
+      </form>
+      
+      <div class="container">
+      <h1>Log in Below!!</h1>
+        <form action="/loginPage" method="post">
+          <center><input name="userName" type="text" class="ghost-input" placeholder="Username" required></center>
+            <br>
+            <center><input name="password" type="text" class="ghost-input" placeholder="Password" required></center>
+            <br>
+            <center><input type="submit" class="ghost-button" value="Login"></center>
+            
+            <!--If theres an error-->
+        <% if(message !== null){ %>
+          <p><%= message %></p>
+        <% } %>
+        </form>
+          
+    </div>
+  </body>
+</html>
